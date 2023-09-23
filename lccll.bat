@@ -1,6 +1,17 @@
 @echo off
 setlocal enabledelayedexpansion
 set "LUNAR_VERSION=1.8.9"
+set "CONFIG_FILE=config.txt"
+
+if not exist "%CONFIG_FILE%" (
+    echo LUNAR_WIDTH=1280>>"%CONFIG_FILE%"
+    echo LUNAR_HEIGHT=720>>"%CONFIG_FILE%"
+)
+
+for /f "tokens=1,2 delims== " %%a in (%CONFIG_FILE%) do (
+    if "%%a"=="LUNAR_WIDTH" set "LUNAR_WIDTH=%%b"
+    if "%%a"=="LUNAR_HEIGHT" set "LUNAR_HEIGHT=%%b"
+)
 
 for /f "tokens=2 delims=: " %%a in ('curl -s https://launcherupdates.lunarclientcdn.com/latest.yml ^| findstr "version:"') do (
     set "LAUNCHER_VERSION=%%a"
@@ -17,7 +28,7 @@ if "%HWID%"=="0" (
 ) else (
     echo   1^) Block HWID: No
 )
-echo   2) Set Window Width and Height
+echo   2) Set Window Size (Current: %LUNAR_WIDTH% x %LUNAR_HEIGHT%)
 echo   3) Run Lunar Client
 echo   4) Exit
 echo.
@@ -40,6 +51,9 @@ if "%input%"=="1" (
     cls
     set /p "LUNAR_WIDTH=Window width (e.g., 1920): "
     set /p "LUNAR_HEIGHT=Window height (e.g., 1080): "
+    
+    echo LUNAR_WIDTH=!LUNAR_WIDTH!>"%CONFIG_FILE%"
+    echo LUNAR_HEIGHT=!LUNAR_HEIGHT!>>"%CONFIG_FILE%"
 ) else if "%input%"=="3" (
     cls
     echo Running Lunar Client..
