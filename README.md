@@ -8,3 +8,4 @@ roadmap:
  - agent injection
  - jre folder search / manual change
  - jvm args
+ - lunarlaunchwrapper adoption
