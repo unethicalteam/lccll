@@ -9,3 +9,4 @@ roadmap:
  - jre folder search / manual change
  - jvm args
  - ~~lunarlaunchwrapper adoption~~ (done in commit [#6514a2f](https://github.com/unethicalteam/lccll/commit/6514a2f8ddd79fce35dd0c7b9d569432176046d5))
+ - websocket blocking (only done for Unix systems atm)
