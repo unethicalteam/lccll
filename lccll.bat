@@ -45,6 +45,10 @@ if exist LunarLaunchWrapper-*.jar (
     )
 )
 
+for /f "tokens=2 delims=: " %%a in ('curl -s https://launcherupdates.lunarclientcdn.com/latest.yml ^| findstr "version:"') do (
+    set "LAUNCHER_VERSION=%%a"
+)
+
 :header
 cls
 echo lccll - lunar client command line launcher
