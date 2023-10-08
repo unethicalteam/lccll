@@ -3,34 +3,39 @@ setlocal enabledelayedexpansion
 set "LUNAR_VERSION=1.8.9"
 set "CONFIG_FILE=config.txt"
 
+:: Create the config file with default values if it doesn't exist
 if not exist "%CONFIG_FILE%" (
-    echo LUNAR_WIDTH=1280>>"%CONFIG_FILE%"
-    echo LUNAR_HEIGHT=720>>"%CONFIG_FILE%"
+    (
+        echo LUNAR_WIDTH=1280
+        echo LUNAR_HEIGHT=720
+    ) > "%CONFIG_FILE%"
 )
 
+:: Load window size settings from the config file
 for /f "tokens=1,2 delims== " %%a in (%CONFIG_FILE%) do (
     if "%%a"=="LUNAR_WIDTH" set "LUNAR_WIDTH=%%b"
     if "%%a"=="LUNAR_HEIGHT" set "LUNAR_HEIGHT=%%b"
 )
 
+:: Detect Lunar Client launcher version
 for /f "tokens=2 delims=: " %%a in ('curl -s https://launcherupdates.lunarclientcdn.com/latest.yml ^| findstr "version:"') do (
     set "LAUNCHER_VERSION=%%a"
 )
 
 :menu
 cls
-echo   lccll - lunar client command line launcher
-echo   Created by [31munethical[0m
-echo   [36mhttps://discord.gg/vhJ8Dsp9qa[0m
+echo lccll - lunar client command line launcher
+echo Created by [31munethical[0m
+echo [36mhttps://discord.gg/vhJ8Dsp9qa[0m
 echo.
 if "%HWID%"=="0" (
-    echo   1^) Block HWID: Yes
+    echo 1^) Block HWID: Yes
 ) else (
-    echo   1^) Block HWID: No
+    echo 1^) Block HWID: No
 )
-echo   2) Set Window Size (Current: %LUNAR_WIDTH% x %LUNAR_HEIGHT%)
-echo   3) Run Lunar Client
-echo   4) Exit
+echo 2) Set Window Size (Current: %LUNAR_WIDTH% x %LUNAR_HEIGHT%)
+echo 3) Run Lunar Client
+echo 4) Exit
 echo.
 set /p "input=Enter the corresponding number and press Enter: "
 
