@@ -55,7 +55,7 @@ menu() {
     clear 
     echo "lccll - lunar client command line launcher"
     echo "Created by unethical"
-    echo "https://discord.gg/vhJ8Dsp9qa"
+    echo "https://unethical.team/discord"
     echo
     echo "1) Block HWID: $(if [ "$HWID" == "0" ]; then echo "Enabled"; else echo "Disabled"; fi)"
     echo "2) Block Websocket: $(if [ "$WEBSOCKET" == "1" ]; then echo "Enabled"; else echo "Disabled"; fi)"

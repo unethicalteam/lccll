@@ -53,7 +53,7 @@ for /f "tokens=2 delims=: " %%a in ('curl -s https://launcherupdates.lunarclient
 cls
 echo lccll - lunar client command line launcher
 echo Created by [31munethical[0m
-echo [36mhttps://discord.gg/vhJ8Dsp9qa[0m
+echo [36mhttps://unethical.team/discord[0m
 echo.
 goto :eof
 
